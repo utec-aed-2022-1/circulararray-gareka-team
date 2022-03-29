@@ -108,18 +108,15 @@ void CircularArray<T>::insert(T data, int pos) {
 		return;
 	}
 
-	if(pos == 0) {
+	if(is_empty()) {
 		push_front(data);
 		return;
 	}
 
-	if(pos == lenght+1)  {
-		push_back(data);
-		return;
-	} 
+	pos = (front + pos) % capacity;
 
-	for(int i=0; i<pos; ++i) {
-		array[lenght-i+1] = array[lenght-i];
+	for(size_t i = next(back); i != pos; i = prev(i)) {
+		array[i] = array[prev(i)];
 	}
 
 	array[pos] = data;
@@ -197,7 +194,7 @@ T& CircularArray<T>::operator[](int i) {
 template <class T>
 string CircularArray<T>::to_string(string sep) {
 	string result = "";
-	for(int i=0; i<size(); i++) {
+	for(int i = 0; i < size(); i++) {
 		result += std::to_string((*this)[i]) + sep;
 	}
 	return result;

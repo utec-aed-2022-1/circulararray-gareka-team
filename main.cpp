@@ -11,7 +11,6 @@ int main() {
     array->push_front(3);
     array->push_front(7);
     array->push_front(8);
-    array->push_front(1);
     // ASSERT(array->is_empty() == false, "The function is_empty is not working");
     // ASSERT(array->is_full() == false, "The function is_full is not working");
     // array->pop_front();
@@ -28,15 +27,15 @@ int main() {
     // array->reverse();
     // ASSERT(array->to_string() == "15 10 8 7 4 3 2 ", "The function reverse is not working");   
     // delete array;
-    cout << array->to_string() << '\n';
-    array->pop_back();
-    cout << array->to_string() << '\n';
-    array->pop_front();
-    cout << array->to_string() << '\n';
-    array->push_back(1);
+    // cout << array->to_string() << '\n';
+    // array->pop_back();
+    // cout << array->to_string() << '\n';
+    // array->pop_front();
+    // cout << array->to_string() << '\n';
+    // array->push_back(1);
     cout << array->to_string() << '\n';
     
-    array->insert(0, 4);
+    array->insert(0, 3);
     cout << array->to_string() << '\n';
     return 0;
 }
