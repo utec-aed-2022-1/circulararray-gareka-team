@@ -187,11 +187,24 @@ T& CircularArray<T>::operator[](int i) {
 
 // }
 
-// template <class T>
-// void CircularArray<T>::reverse() {
-
-// }
-
+template <class T>
+void CircularArray<T>::reverse() {
+	T *tmp = new T[capacity];
+	int contador = 0;
+	for(int i=back; i<lenght; i++) {
+		back = prev(back);
+		tmp[contador] = array[back];
+		cout << contador <<  " " << array[back] << endl;
+		cout << "back" << back << endl;
+		contador++;
+	}
+	// delete[] array;
+	array = tmp;
+	for(int i=0;i<capacity;i++)
+	{cout << endl;
+		cout << tmp[i] << " ";}
+	// delete[] tmp;
+}
 
 
 template <class T>
