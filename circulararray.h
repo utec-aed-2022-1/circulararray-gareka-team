@@ -182,18 +182,28 @@ T& CircularArray<T>::operator[](int i) {
 
 // }
 
-// template <class T>
-// bool CircularArray<TZ::is_sorted() {
-
-// }
+template <class T>
+bool CircularArray<T>::is_sorted() {
+	int contador = front;
+	for(int i = 0; i<lenght-1; i++)
+	{
+		if(array[contador] < array[prev(contador)])
+		{
+			return false;
+		}
+		contador = next(contador);
+	}
+	return true;
+}
 
 template <class T>
 void CircularArray<T>::reverse() {
 	T *tmp = new T[capacity];
 	int contador = front;
+	int backtemp = back;
 	for(int i=back; i<lenght; i++) {
-		tmp[contador] = array[back];
-		back = prev(back);
+		tmp[contador] = array[backtemp];
+		backtemp = prev(backtemp);
 		contador = next(contador);
 	}
 	array = tmp;
