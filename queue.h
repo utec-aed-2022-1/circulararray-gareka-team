@@ -11,26 +11,26 @@ class QueueArray : protected CircularArray<T> {
     T back();
 
     void enqueue(T a) {
-      push_back(a);
+      this -> push_back(a);
     }
 
     void dequeue() {
-      pop_front();
+      this -> pop_front();
     }
 
     int size() {
-      return size();
+      return this -> size();
     }
 
     void empty() {
-      clear();
+      this -> clear();
     }
 
     T front() {
-      return getFront();
+      return this -> getFront();
     }
 
     T back() {
-      return getBack();
+      return this -> getBack();
     }
 };

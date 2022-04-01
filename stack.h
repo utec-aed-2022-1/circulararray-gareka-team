@@ -3,30 +3,24 @@
 template <typename T>
 class StackArray : public CircularArray<T> { 
 public:
-	void push(T data);
-	void pop(); 
-	int size();
-	void empty();
-    T top();
-  
     void push(T a) {
-      push_front(a);
+      this -> push_front(a);
     }
 
     void pop() {
-      pop_front();
+      this -> pop_front();
     }
 
     int size() {
-      return size();
+      return this -> size();
     }
 
     void empty() {
-      clear();
+      this -> clear();
     }
 
     T top(){
-        return getFront();
+      return this -> getFront();
     }
 
 };
