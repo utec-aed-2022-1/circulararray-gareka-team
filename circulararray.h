@@ -18,6 +18,8 @@ public:
 	void insert(T data, int pos);
 	T pop_front();
 	T pop_back();
+	T front();
+	T back();
 	bool is_full();
 	bool is_empty();
 	int size();
@@ -147,8 +149,17 @@ T CircularArray<T>::pop_back() {
 }
 
 template <class T>
+T front() {
+	return array[front];
+}
+
+template <class T>
+T back() {
+	return array[back];
+}
+
+template <class T>
 bool CircularArray<T>::is_full() {
-	// cout << "capacity == lenght - 1: " << capacity  << " " << lenght << '\n';
 	return capacity == lenght;
 }
 
@@ -204,7 +215,7 @@ bool CircularArray<T>::is_sorted() {
 
 template <class T>
 void CircularArray<T>::reverse() {
-	
+
 }
 
 
