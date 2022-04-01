@@ -3,27 +3,34 @@
 template <typename T>
 class QueueArray : protected CircularArray<T> { 
   public:
-    void push(T a) {
+    void enqueue(T data);
+    void dequeue(); 
+    int size();
+    void empty();
+    T front();
+    T back();
+
+    void enqueue(T a) {
       push_back(a);
     }
 
-    void pop() {
+    void dequeue() {
       pop_front();
     }
 
     int size() {
-      size();
+      return size();
     }
 
     void empty() {
-      empty();
+      clear();
     }
 
-    void front() {
-      getFront();
+    T front() {
+      return getFront();
     }
 
-    void back() {
-      getBack();
+    T back() {
+      return getBack();
     }
 };
