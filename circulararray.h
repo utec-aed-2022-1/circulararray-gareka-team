@@ -190,6 +190,7 @@ void CircularArray<T>::sort() {
 				swap((*this)[j], (*this)[j+1]);
 }
 
+
 template <class T>
 bool CircularArray<T>::is_sorted() {
 	int contador = front;
@@ -203,6 +204,7 @@ bool CircularArray<T>::is_sorted() {
 
 template <class T>
 void CircularArray<T>::reverse() {
+	
 }
 
 
