@@ -75,25 +75,25 @@ void CircularArray<T>::push_front(T data) {
 		front = prev(front);
 	
 	array[front] = data;
-	lenght++;
+	++lenght;
 }
 
 template <class T>
 void CircularArray<T>::push_back(T data) {
-	if(is_full()) {
-		cout << "El arreglo está lleno" << endl;
-		return;
-	}
-
 	if(is_empty()) {
 		push_front(data);
+		return;
+	}
+	
+	if(is_full()) {
+		cout << "El arreglo está lleno" << endl;
 		return;
 	}
 	
 	back = next(back);
 	
 	array[back] = data;
-	lenght++;
+	++lenght;
 }
 
 template <class T>
@@ -121,13 +121,13 @@ void CircularArray<T>::insert(T data, int pos) {
 
 	array[pos] = data;
 
-	lenght++;
+	++lenght;
 }
 
 template <class T>
 T CircularArray<T>::pop_front() {
 	if(is_empty()) {
-		throw "El arreglo está vacío, no hay nada para borrar";
+		throw invalid_argument("El arreglo está vacío, no hay nada para borrar");
 	} 
 
 	front = next(front);
@@ -138,7 +138,7 @@ T CircularArray<T>::pop_front() {
 template <class T>
 T CircularArray<T>::pop_back() {
 	if(is_empty()) {
-		throw "El arreglo está vacío, no hay nada para borrar";
+		throw invalid_argument("El arreglo está vacío, no hay nada para borrar");
 	} 
 
 	back = prev(back);
@@ -148,7 +148,8 @@ T CircularArray<T>::pop_back() {
 
 template <class T>
 bool CircularArray<T>::is_full() {
-	return capacity == lenght - 1 || capacity == 0;
+	// cout << "capacity == lenght - 1: " << capacity  << " " << lenght << '\n';
+	return capacity == lenght;
 }
 
 template <class T>
@@ -169,42 +170,32 @@ void CircularArray<T>::clear() {
 
 template <class T>
 T& CircularArray<T>::operator[](int i) {
-	if(is_empty() || is_full() || i > capacity-1 || i < 0) 
-		throw "No fue posible retornar un valor";
+	if(is_empty() || i > capacity-1 || i < 0)
+		throw invalid_argument("No fue posible retornar un valor");
 	return array[(front + i) % capacity];
 }
 
-
-void swap(int *a, int *b)
-{
-    int temp = *a;
-    *a = *b;
-    *b = temp;
+template <class T>
+void swap(T* a, T* b) {
+	T temp = a;
+	a = b;
+	b = temp;
 }
 
 template <class T>
 void CircularArray<T>::sort() {
- 	int i, j;
-	int b = front;
-	int n = lenght;
-    for (i = 0; i < n-1; i++){
-    for (j = 0; j < n-i-1; j++){
-        if (array[b] > array[next(b)])
-            {swap(&array[b], &array[next(b)]);}
-		b = next(b);
-	}
-	}
+	for(int i = 0; i < lenght-1; ++i) 
+		for(int j = 0; j < lenght-1-i; ++j) 
+			if((*this)[j] > (*this)[j+1]) 
+				swap((*this)[j], (*this)[j+1]);
 }
 
 template <class T>
 bool CircularArray<T>::is_sorted() {
 	int contador = front;
-	for(int i = 0; i<lenght-1; i++)
-	{
-		if(array[contador] < array[prev(contador)])
-		{
+	for(int i = 0; i<lenght-1; i++) {
+		if(array[contador] < array[prev(contador)]) 
 			return false;
-		}
 		contador = next(contador);
 	}
 	return true;
@@ -212,15 +203,6 @@ bool CircularArray<T>::is_sorted() {
 
 template <class T>
 void CircularArray<T>::reverse() {
-	T *tmp = new T[capacity];
-	int contador = front;
-	int backtemp = back;
-	for(int i=back; i<lenght; i++) {
-		tmp[contador] = array[backtemp];
-		backtemp = prev(backtemp);
-		contador = next(contador);
-	}
-	array = tmp;
 }
 
 
