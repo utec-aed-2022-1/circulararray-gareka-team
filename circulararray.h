@@ -204,7 +204,17 @@ bool CircularArray<T>::is_sorted() {
 
 template <class T>
 void CircularArray<T>::reverse() {
-	
+	T *tmp = new T[capacity];
+	int contador = 0;
+
+	for(int i=size()-1; i>=0; i--) {
+		tmp[contador] = (*this)[i];
+		contador++;
+	}
+
+	for(int i=size()-1; i>=0; i--) {
+		(*this)[i] = tmp[i];
+	}
 }
 
 
