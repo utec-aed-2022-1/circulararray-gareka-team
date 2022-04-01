@@ -169,30 +169,24 @@ void CircularArray<T>::clear() {
 
 template <class T>
 T& CircularArray<T>::operator[](int i) {
-	if(is_empty() || is_full() || i > capacity-1 || i < 0) 
+	if(i >= size() || i < 0) 
 		throw "No fue posible retornar un valor";
 	return array[(front + i) % capacity];
 }
 
 
-void swap(int *a, int *b)
-{
-    int temp = *a;
-    *a = *b;
-    *b = temp;
-}
-
 template <class T>
 void CircularArray<T>::sort() {
- 	int i, j;
-	int b = front;
-	int n = lenght;
-    for (i = 0; i < n-1; i++){
-    for (j = 0; j < n-i-1; j++){
-        if (array[b] > array[next(b)])
-            {swap(&array[b], &array[next(b)]);}
-		b = next(b);
-	}
+	for(int i = 0; i < size(); ++i){
+		for(int j = i+1; j<size();++j)
+		{
+			if((*this)[i] > (*this)[j])
+			{
+				T aux  = (*this)[i];
+				(*this)[i] = (*this)[j];
+				(*this)[j] = aux;
+			}
+		}
 	}
 }
 
