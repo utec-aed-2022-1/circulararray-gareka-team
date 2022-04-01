@@ -20,10 +20,10 @@ class QueueArray : protected CircularArray<T> {
     }
 
     void front() {
-      front();
+      getFront();
     }
 
     void back() {
-      back();
+      getBack();
     }
 };

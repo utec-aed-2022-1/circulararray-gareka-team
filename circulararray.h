@@ -18,8 +18,8 @@ public:
 	void insert(T data, int pos);
 	T pop_front();
 	T pop_back();
-	T front();
-	T back();
+	T getFront();
+	T getBack();
 	bool is_full();
 	bool is_empty();
 	int size();
@@ -149,12 +149,12 @@ T CircularArray<T>::pop_back() {
 }
 
 template <class T>
-T front() {
+T CircularArray<T>::getFront() {
 	return array[front];
 }
 
 template <class T>
-T back() {
+T CircularArray<T>::getBack() {
 	return array[back];
 }
 
@@ -215,7 +215,19 @@ bool CircularArray<T>::is_sorted() {
 
 template <class T>
 void CircularArray<T>::reverse() {
+	T *tmp = new T[capacity];
+	int contador = 0;
 
+	for(int i = size()-1; i >= 0; i--) {
+		tmp[contador] = (*this)[i];
+		contador++;
+	}
+
+	for(int i = size()-1; i >= 0; i--) {
+		(*this)[i] = tmp[i];
+	}
+
+	delete[] tmp;
 }
 
 
