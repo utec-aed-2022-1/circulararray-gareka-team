@@ -215,6 +215,7 @@ void CircularArray<T>::reverse() {
 	for(int i=size()-1; i>=0; i--) {
 		(*this)[i] = tmp[i];
 	}
+	delete[] *tmp;
 }
 
 
